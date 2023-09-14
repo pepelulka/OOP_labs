@@ -1,0 +1,1 @@
+add_library(gcd_main gcd.cpp)

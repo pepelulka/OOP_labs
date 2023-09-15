@@ -21,6 +21,12 @@ bool bigIntTest() {
            gcd::gcd(324224, 1234160) == 16;
 }
 
+bool zeroTest() {
+    return gcd::gcd(0, 123456) == 123456 &&
+           gcd::gcd(57547, 0) == 57547 &&
+           gcd::gcd(0, 0) == 0;
+}
+
 TEST(GCDTests, BasicTest) {
     EXPECT_TRUE(basicTest());
 }
@@ -31,4 +37,8 @@ TEST(GCDTests, NegativeTest) {
 
 TEST(GCDTests, BigIntTest) {
     EXPECT_TRUE(bigIntTest());
+}
+
+TEST(GCDTests, ZeroTest) {
+    EXPECT_TRUE(zeroTest());
 }

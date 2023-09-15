@@ -9,3 +9,6 @@ include_directories(${CMAKE_SOURCE_DIR})
 
 add_subdirectory(gcd)
 add_subdirectory(test)
+
+add_executable(main main.cpp)
+target_link_libraries(main gcd_main)

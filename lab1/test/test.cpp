@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 
-#include "gcd.h"
+#include "gcd/gcd.h"
+
+#include <iostream>
 
 bool basicTest() {
     return gcd::gcd(2, 3) == 1 &&

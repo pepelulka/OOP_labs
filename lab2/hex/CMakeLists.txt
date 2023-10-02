@@ -1,0 +1,1 @@
+add_library(hex_lib hex.cpp)

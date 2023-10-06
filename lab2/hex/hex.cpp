@@ -168,6 +168,9 @@ void Hex::pushBack(const uchar x) {
 // Boolean
 
 bool Hex::operator== (const Hex & other) const {
+    if (other.size() == 0 && size() == 0) {
+        return true;
+    }
     if (size() != other.size()) {
         return false;
     }
@@ -184,6 +187,9 @@ bool Hex::operator!= (const Hex & other) const {
 }
 
 bool Hex::operator< (const Hex & other) const {
+    if (other.size() == 0 && size() == 0) {
+        return false;
+    }
     if (size() > other.size()) {
         return false;
     }
@@ -202,6 +208,9 @@ bool Hex::operator< (const Hex & other) const {
 }
 
 bool Hex::operator<= (const Hex & other) const {
+    if (other.size() == 0 && size() == 0) {
+        return true;
+    }
     if (size() > other.size()) {
         return false;
     }
@@ -241,6 +250,11 @@ Hex Hex::operator+(const Hex & other) const {
     return result;
 }
 
+Hex& Hex::operator+= (const Hex& other) {
+    *this = std::move(*this + other);
+    return *this;
+}
+
 Hex Hex::operator-(const Hex & other) const {
     if ((*this) < other) {
         return other.operator-(*this);
@@ -260,6 +274,12 @@ Hex Hex::operator-(const Hex & other) const {
     result.resize(result.size() - zeroCount);
     return result;
 }
+
+Hex& Hex::operator-= (const Hex& other) {
+    *this = std::move(*this - other);
+    return *this;
+}
+
 
 // Streams
 std::ostream& operator<< (std::ostream& stream, const Hex& hex) {

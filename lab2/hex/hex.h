@@ -23,6 +23,7 @@ private:
     uchar operator[] (const int index) const;
 public:
     Hex();
+    Hex(const unsigned int x);
     Hex(const size_t & n, uchar t);
     Hex(const std::initializer_list<uchar> & t);
     Hex(const std::string &t);
@@ -48,7 +49,9 @@ public:
 
     // Arithmetic
     Hex operator+ (const Hex& other) const;
+    Hex& operator+= (const Hex& other);
     Hex operator- (const Hex& other) const;
+    Hex& operator-= (const Hex& other);
 
     // Streams
     friend std::ostream& operator<< (std::ostream& stream, const Hex& hex);

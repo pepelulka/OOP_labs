@@ -280,7 +280,6 @@ Hex& Hex::operator-= (const Hex& other) {
     return *this;
 }
 
-
 // Streams
 std::ostream& operator<< (std::ostream& stream, const Hex& hex) {
     stream << hex.toString();

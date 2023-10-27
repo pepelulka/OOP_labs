@@ -23,9 +23,8 @@ private:
     uchar operator[] (const int index) const;
 public:
     Hex();
-    Hex(const unsigned int x);
     Hex(const size_t & n, uchar t);
-    Hex(const std::initializer_list<uchar> & t);
+    Hex(const std::initializer_list<uchar> & t); 
     Hex(const std::string &t);
     Hex(const char* cStr);
 

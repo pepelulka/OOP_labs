@@ -1,3 +1,4 @@
 add_library(figures_lib 
                         point.cpp
-                        figures.cpp)
+                        figures.cpp
+                        array.cpp)

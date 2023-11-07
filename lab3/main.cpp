@@ -1,5 +1,6 @@
 #include "figures/point.h"
 #include "figures/figures.h"
+#include "figures/array.h"
 
 #include <iostream>
 
@@ -15,7 +16,7 @@ private:
             std::cout << "There's no figure with index " << n + 1 << ".\n";
             return ;
         }
-        data.erase(data.begin() + n);
+        data.erase(n);
     }
 
     void pushFigure() {
@@ -25,15 +26,15 @@ private:
             if (type == "square") {
                 Square *sq = new Square;
                 std::cin >> *sq;
-                data.push_back((Figure*)sq);
+                data.pushBack((Figure*)sq);
             } else if (type == "triangle") {
                 Triangle *tr = new Triangle;
                 std::cin >> *tr;
-                data.push_back((Figure*)tr);
+                data.pushBack((Figure*)tr);
             } else if (type == "octagon") {
                 Octagon *oct = new Octagon;
                 std::cin >> *oct;
-                data.push_back((Figure*)oct);
+                data.pushBack((Figure*)oct);
             } else {
                 std::cout << "Unknown figure name.\n";
                 return;
@@ -47,8 +48,8 @@ private:
 
     void wholeArea() {
         double area = 0;
-        for (Figure* i : data) {
-            area += static_cast<double>(*i); 
+        for (size_t i = 0; i < data.size(); i++) {
+            area += static_cast<double>(*data[i]); 
         }
         std::cout << area << std::endl;
     }
@@ -62,7 +63,7 @@ private:
         }
     }
 
-    std::vector<Figure*> data;
+    Array data;
 public:
     void start() {
         std::string command;
@@ -82,12 +83,6 @@ public:
             }
             std::cout << "> ";
             std::cin >> command;
-        }
-    }
-
-    ~MainRoutine() {
-        for (Figure* fig : data) {
-            delete fig;
         }
     }
 };

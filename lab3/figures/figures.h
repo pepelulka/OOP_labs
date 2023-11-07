@@ -14,7 +14,7 @@ public:
     virtual operator double () const = 0; 
 };
 
-class Octagon : Figure {
+class Octagon : public Figure {
 private:
     Point point1, point2;
     int orientation; // Either 1 or -1
@@ -36,7 +36,7 @@ public:
     friend std::istream& operator>>(std::istream &stream, Octagon &sq);  
 };
 
-class Triangle : Figure {
+class Triangle : public Figure {
 private:
     Point point1, point2;
     int orientation; // Either 1 or -1
@@ -58,7 +58,7 @@ public:
     friend std::istream& operator>>(std::istream &stream, Triangle &sq);   
 };
 
-class Square : Figure {
+class Square : public Figure {
 private:
     // Two opposite points
     Point point1, point2;

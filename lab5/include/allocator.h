@@ -32,7 +32,6 @@ private:
         return N + 1;
     }
 public:
-    // static constexpr size_t max_count = 100000;
     using value_type = T;
     using pointer = T*;
     using const_pointer = const T*;
@@ -67,7 +66,6 @@ public:
         for (size_t currentBucket = 0; currentBucket < N + 1; currentBucket++) {
             size_t bucketSize = (1 << currentBucket);
             if (n <= bucketSize && bucketCounts[currentBucket] != 0) {
-                // std::cout << "Allocated in bucket " << currentBucket << " block\n";
                 return static_cast<T*>(buckets[currentBucket][--bucketCounts[currentBucket]]);
             }
         }
@@ -79,7 +77,6 @@ public:
         if (bucketNum == N + 1) {
             throw std::invalid_argument("This pointer not from allocator's buffer.");
         }
-        // std::cout << "Deallocated in bucket " << bucketNum << " block\n";
         buckets[bucketNum][bucketCounts[bucketNum]++] = pointer;
     }
 
@@ -97,13 +94,13 @@ public:
 };
 
 template <class T, class U>
-constexpr bool operator==(const BinAllocator<T> &lhs, const BinAllocator<U> &rhs) 
+constexpr bool operator==(const BinAllocator<T> &lhs, const BinAllocator<U> &rhs)
 {
     return true;
 }
 
 template <typename T, typename U, size_t BLOCK_COUNT>
-constexpr bool operator!=(const BinAllocator<T> &lhs, const BinAllocator<U> &rhs)  
+constexpr bool operator!=(const BinAllocator<T> &lhs, const BinAllocator<U> &rhs)
 {
     return false;
 }

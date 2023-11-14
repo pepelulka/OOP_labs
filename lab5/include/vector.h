@@ -1,4 +1,4 @@
-#pragma once 
+#pragma once
 
 #include <iostream>
 #include <memory>
@@ -115,11 +115,6 @@ public:
         _size = list.size();
         data = alloc.allocate(_size);
         _capacity = _size;
-        // size_t i = 0;
-        // for (const auto& j : list) {
-        //     data[i] = j;
-        //     i++;
-        // }
         std::copy(list.begin(), list.end(), begin());
     }
 
@@ -188,11 +183,12 @@ public:
             _capacity = n;
             T* oldData = data;
             data = alloc.allocate(_capacity);
+            for (size_t i = 0; i < _capacity; i++) {
+                new (&data[i]) T();
+            }
             for (size_t i = 0; i < size(); i++) {
                 data[i] = oldData[i];
             }
-            if (oldData != nullptr);
-                // alloc.deallocate(oldData, oldCapacity);
         }
     }
 
@@ -208,11 +204,8 @@ public:
     }
 
     void pushBack(const T &a) {
-        std::cout << "1\n";
         resize(size() + 1);
-        std::cout << "2\n";
         data[size() - 1] = a;
-        std::cout << "3\n";
     }
 
     friend std::ostream& operator<<(std::ostream &stream, const Vector &vector) {

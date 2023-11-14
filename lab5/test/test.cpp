@@ -39,20 +39,53 @@ TEST(Lab5, VectorTest) {
         sum += i;
     }
     EXPECT_EQ(sum, 21);
-    std::vector<std::string> meow = {
-        "aa1",
-        "pepelul",
-        "fff",
-        ""
+    std::vector<std::vector<int>> meow = {
+        {1, 2, 3},
+        {3, 2, 1},
+        {123, 3123, 3}
     };
-    Vector<std::string> mmeow;
+    Vector<std::vector<int>> mmeow;
     for (size_t i = 0; i < meow.size(); i++) {
-        std::cout << "{";
         mmeow.pushBack(meow[i]);
-        std::cout << "}";
     }
-    std::cout << std::endl;
-    // for (size_t i = 0; i < mmeow.size(); i++) {
-    //     EXPECT_EQ(meow[i], mmeow[i]);
-    // }
+    for (size_t i = 0; i < mmeow.size(); i++) {
+        EXPECT_EQ(meow[i], mmeow[i]);
+    }
+}
+
+TEST(Lab5, VectorBinAllocatorTest) {
+    Vector<int, BinAllocator<int>> a = {0, 1, 2, 3, 4};
+    a.pushBack(5);
+    a.pushBack(6);
+    int sum = 0;
+    for (const auto& i : a) {
+        sum += i;
+    }
+    EXPECT_EQ(sum, 21);
+    std::vector<std::string> meow = {
+        "abc",
+        "meow",
+        "pepe"
+    };
+    Vector<std::string, BinAllocator<std::string>> mmeow;
+    for (size_t i = 0; i < meow.size(); i++) {
+        mmeow.pushBack(meow[i]);
+    }
+    for (size_t i = 0; i < mmeow.size(); i++) {
+        EXPECT_EQ(meow[i], mmeow[i]);
+    }
+}
+
+TEST(Lab5, VectorInteratorTest) {
+    Vector<std::string, BinAllocator<std::string>> a = {
+        "abc",
+        "meow",
+        "clcl"
+    };
+
+    Vector<std::string, BinAllocator<std::string>> b(3);
+    std::copy(a.begin(), a.end(), b.begin());
+    for (size_t i = 0; i < b.size(); i++) {
+        EXPECT_EQ(a[i], b[i]);
+    }
 }
